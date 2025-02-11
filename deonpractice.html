@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Valentine's Day</title>
+    <style>
+        /* General Styles */
+        body {
+            text-align: center;
+            background: linear-gradient(to right, #ff9a9e, #fad0c4, #ffdde1);
+            font-family: 'Arial', sans-serif;
+            position: relative;
+            overflow: hidden;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+        }
+        .container {
+            position: relative;
+            z-index: 2;
+        }
+        h1 {
+            color: #d63384;
+            font-size: 3em;
+            margin: 0;
+        }
+        p {
+            color: #6a0572;
+            font-size: 1.5em;
+        }
+        .heart {
+            color: red;
+            font-size: 5em;
+            animation: heartbeat 1.5s infinite;
+        }
+        @keyframes heartbeat {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+        .button {
+            background-color: #d63384;
+            color: white;
+            padding: 15px 25px;
+            border: none;
+            font-size: 1.2em;
+            border-radius: 10px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .button:hover {
+            background-color: #a31e60;
+        }
+
+        /* Photo Frames */
+        .photo-frame {
+            position: absolute;
+            width: 120px;
+            height: 120px;
+            border: 8px solid white;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+            background-size: cover;
+            background-position: center;
+            border-radius: 15px;
+            transform: rotate(-10deg);
+        }
+        .frame1 { top: 5%; left: 5%; background-image: url('WhatsApp Image 2025-02-11 at 3.55.31 PM.jpeg'); }
+        .frame2 { top: 15%; right: 5%; background-image: url('WhatsApp Image 2025-02-11 at 3.58.39 PM.jpeg'); transform: rotate(10deg); }
+        .frame3 { bottom: 15%; left: 10%; background-image: url('WhatsApp Image 2025-02-11 at 3.58.39 PM (1).jpeg'); transform: rotate(-15deg); }
+        .frame4 { bottom: 5%; right: 10%; background-image: url('us.jpeg'); transform: rotate(15deg); }
+        .frame5 { top: 40%; left: 5%; background-image: url('solo.jpeg'); transform: rotate(-5deg); }
+        .frame6 { top: 40%; right: 5%; background-image: url('solo2.jpeg'); transform: rotate(5deg); }
+        .frame7 { bottom: 40%; left: 25%; background-image: url('solo6.jpeg'); transform: rotate(-8deg); }
+        .frame8 { bottom: 40%; right: 25%; background-image: url('solo5.jpeg'); transform: rotate(8deg); }
+
+        /* Animated Hearts */
+        .heart-corner {
+            position: absolute;
+            font-size: 3em;
+            color: red;
+            opacity: 0.8;
+            animation: heart-animation 2s infinite ease-in-out;
+        }
+        .heart-top-left { top: 5%; left: 5%; }
+        .heart-top-right { top: 5%; right: 5%; }
+        .heart-bottom-left { bottom: 5%; left: 5%; }
+        .heart-bottom-right { bottom: 5%; right: 5%; }
+
+        @keyframes heart-animation {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.5); }
+            100% { transform: scale(1); }
+        }
+
+        /* Confetti Animation */
+        @keyframes confetti {
+            0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+        }
+        .confetti {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            width: 5px;
+            height: 10px;
+            background-color: #ff6347;
+            animation: confetti 2s infinite;
+            opacity: 0;
+            z-index: 5;
+        }
+        .confetti:nth-child(odd) { animation-duration: 3s; }
+        .confetti:nth-child(even) { animation-duration: 4s; }
+        /* Background Sparkle Effect */
+        .sparkle {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: white;
+            border-radius: 50%;
+            animation: sparkle 1.5s infinite ease-in-out;
+            opacity: 0.8;
+        }
+        @keyframes sparkle {
+            0% { transform: scale(0.5); opacity: 1; }
+            100% { transform: scale(1.5); opacity: 0; }
+        }
+
+        /* Media Queries for Responsiveness */
+        @media (max-width: 768px) {
+            .container {
+                margin-top: 5vh;
+            }
+            h1 {
+                font-size: 2em;
+            }
+            p {
+                font-size: 1.2em;
+            }
+            .heart {
+                font-size: 4em;
+            }
+            .photo-frame {
+                width: 100px;
+                height: 100px;
+            }
+            .heart-corner {
+                font-size: 2.5em;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                margin-top: 5vh;
+            }
+            h1 {
+                font-size: 1.8em;
+            }
+            p {
+                font-size: 1em;
+            }
+            .heart {
+                font-size: 3.5em;
+            }
+            .photo-frame {
+                width: 90px;
+                height: 90px;
+            }
+            .heart-corner {
+                font-size: 2em;
+            }
+        }
+    </style>
+    <script>
+        function createConfetti() {
+            const confettiContainer = document.querySelector('body');
+            for (let i = 0; i < 50; i++) {
+                const confettiPiece = document.createElement('div');
+                confettiPiece.classList.add('confetti');
+                confettiPiece.style.left = `${Math.random() * 100}%`;
+                confettiPiece.style.animationDuration = `${Math.random() * 2 + 2}s`;
+                confettiContainer.appendChild(confettiPiece);
+            }
+        }
+
+        function createSparkles() {
+            const sparkleContainer = document.querySelector('body');
+            for (let i = 0; i < 20; i++) {
+                const sparkle = document.createElement('div');
+                sparkle.classList.add('sparkle');
+                sparkle.style.top = `${Math.random() * 100}%`;
+                sparkle.style.left = `${Math.random() * 100}%`;
+                sparkle.style.animationDuration = `${Math.random() * 1 + 1.5}s`;
+                sparkleContainer.appendChild(sparkle);
+            }
+        }
+
+        // Call functions when the page loads
+        window.onload = () => {
+            createConfetti();
+            createSparkles();
+        };
+    </script>
+</head>
+<body>
+    <div class="photo-frame frame1"></div>
+    <div class="photo-frame frame2"></div>
+    <div class="photo-frame frame3"></div>
+    <div class="photo-frame frame4"></div>
+    <div class="photo-frame frame5"></div>
+    <div class="photo-frame frame6"></div>
+    <div class="photo-frame frame7"></div>
+    <div class="photo-frame frame8"></div>
+    
+    <div class="container">
+        <h1>Happy Valentine's Day, My Febuuu! ❤️</h1>
+        <p>You are the best thing that ever happened to me. I love you soo much Feba! 💕</p>
+        <div class="heart">❤️</div>
+        <br>
+    </div>
+
+    <!-- Hearts in Each Corner -->
+    <div class="heart-corner heart-top-left">❤️</div>
+    <div class="heart-corner heart-top-right">❤️</div>
+    <div class="heart-corner heart-bottom-left">❤️</div>
+    <div class="heart-corner heart-bottom-right">❤️</div>
+
+</body>
+</html>
